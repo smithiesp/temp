@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)http://localhost/hw/battle.jsp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+
+<title>Guild War</title>
+<link rel="stylesheet" href="./GuildWar_files/hw.css">
+<style>
+.menubar {
+	background-color: teal;
+  	display: flex;
+  	flex-direction: row;  
+  	justify-content: space-between;
+}
+.menubar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;  
+}
+.menubar li {
+  color: white;
+}
+.menubar button {
+	border: none;
+	font-family: inherit;
+	background-color: teal;
+}
+</style>
+ </head>
+<body>
+
+<header style="display: flex; flex-direction: column">
+	<div style="display: flex; flex-direction: row; justify-content: space-between">
+		<div class="headerName"><a href="http://localhost/hw/index.jsp" style="text-decoration: none;"><img alt="Hero Wars" src="./GuildWar_files/herowars.png" height="50"></a><span style="vertical-align: 60%;"> Guild War AI Assist</span></div>
+		<div class="headerText">Battle</div>
+	</div>
+</header>
+<form name="frm" method="post" action="http://localhost/hw/battle.jsp">
+<div class="menubar">
+	<ul>
+		<li><button onclick="window.location.href=&quot;index.jsp&quot;; return false;">Home</button>
+		</li><li><button onclick="window.location.href=&quot;battle.jsp?mode=defend&amp;warId=10&quot;; return false;">Defend</button>
+		</li><li><button onclick="window.location.href=&quot;battle.jsp?mode=attack&amp;warId=10&quot;; return false;">Attack</button>
+		</li><li><button onclick="document.frm.act.value=&quot;save&quot; ; document.frm.submit(); return false;">Save</button>
+	</li></ul>
+	<ul>
+		<li><button onclick="document.frm.act.value=&quot;plan&quot; ; document.frm.submit(); return false;">Plan</button>
+		</li><li><button onclick="document.frm.act.value=&quot;plan&quot; ; document.frm.submit(); return false;">Cushion</button>
+		</li><li><input type="range" name="cushion" id="cushion" value="0.00" min="-0.3" max="0.3" step="0.05" onchange="document.getElementById(`cushionPct`).innerHTML = Math.round(100 * document.frm.cushion.value) + `%`">					<!--  -->
+				<span style="font-size: 13px; vertical-align: text-top;" id="cushionPct">0%</span>
+	</li></ul>
+	<ul><li>War: 2022-01-03</li></ul>
+</div>
+<input type="hidden" name="act" id="act" value="">
+<input type="hidden" name="mode" id="mode" value="attack">
+<input type="hidden" name="warId" id="warId" value="10">
+<datalist id="defPlayers"><option value="Blue"></option><option value="Butchers"></option><option value="ClutchShot"></option><option value="ISI"></option><option value="Kajikeree"></option><option value="Kostas"></option><option value="Leonard"></option><option value="mike_d"></option><option value="Minthe"></option><option value="Parah"></option><option value="RangerRick"></option><option value="SkeetSkeetSkeet"></option><option value="Son Goku"></option><option value="Stanif"></option><option value="Xerxeso"></option><option value="Zalmoxis"></option></datalist>
+
+<table>
+	<tbody><tr valign="top">
+		<td>    <!-- Defenders -->
+			<table style="border-collapse: collapse;">
+				<tbody><tr><td colspan="5"><b>Defense: Xerxeso</b>
+					</td><td colspan="2"><b>Offense: Mein kleines Reich</b>
+				</td></tr><tr height="5px;"><td colspan="7"><hr>
+					  
+		
+				</td></tr><tr><td>&nbsp;
+				</td></tr><tr><th colspan="2">Fort</th><th align="left">Member</th><th>Titan Power</th><th align="left">Formation</th><th align="left">Attacker</th><th>Result
+</th></tr><tr valign="top" style="border-top: 1pt dotted dimgray;"><td align="right">Bridge</td><td>1</td><td><input type="text" name="P11_member" id="P11_member" value="ClutchShot" list="defPlayers"></td><td><input type="number" name="P11_power" id="P11_power" value="600166" class="power" oninput="document.frm.P11_warDate.value=`2022-01-03`" step="1"></td><td><select name="P11_formationId"> <option value="">&nbsp;</option><option value="1" selected="">Earth</option><option value="3">Fire</option><option value="2">Water</option></select><input type="hidden" name="P11_warDate" id="P11_warDate" value="01/03/2022">
+</td><td title="#1770: Bridge/1 #6 g g TITAN 673068 Water hero 381051 attacked +20"><select name="P11_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option selected="">g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P11_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>2</td><td><input type="text" name="P12_member" id="P12_member" value="Blue" list="defPlayers"></td><td><input type="number" name="P12_power" id="P12_power" value="394565" class="power" oninput="document.frm.P12_warDate.value=`2022-01-03`" step="1"></td><td><select name="P12_formationId"> <option value="">&nbsp;</option><option value="1" selected="">Earth</option><option value="3">Fire</option><option value="2">Water</option></select><input type="hidden" name="P12_warDate" id="P12_warDate" value="01/03/2022">
+</td><td title="#1771: Bridge/2 #12 Refator TITAN 455872 Earth hero 426657 attacked +20"><select name="P12_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option selected="">Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P12_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>3</td><td><input type="text" name="P13_member" id="P13_member" value="Xerxeso" list="defPlayers"></td><td><input type="number" name="P13_power" id="P13_power" value="487157" class="power" oninput="document.frm.P13_warDate.value=`2022-01-03`" step="1"></td><td><select name="P13_formationId"> <option value="">&nbsp;</option><option value="1" selected="">Earth</option><option value="3">Fire</option><option value="2">Water</option></select><input type="hidden" name="P13_warDate" id="P13_warDate" value="01/03/2022">
+</td><td title="#1772: Bridge/3 #6 g g TITAN 673068 Water hero 381051 attacked +20"><select name="P13_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option selected="">g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P13_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top" style="border-top: 1pt dotted dimgray;"><td align="right">Bastion of Fire</td><td>1</td><td><input type="text" name="P21_member" id="P21_member" value="Zalmoxis" list="defPlayers"></td><td><input type="number" name="P21_power" id="P21_power" value="332875" class="power" oninput="document.frm.P21_warDate.value=`2022-01-03`" step="1"></td><td><select name="P21_formationId"> <option value="">&nbsp;</option><option value="1">Earth</option><option value="3" selected="">Fire</option><option value="2">Water</option></select><input type="hidden" name="P21_warDate" id="P21_warDate" value="01/03/2022">
+</td><td title="#1798: Bastion of Fire/1 #33 Happy TITAN 482382 Water hero 445354 attacked +20"><select name="P21_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option selected="">Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P21_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>2</td><td><input type="text" name="P22_member" id="P22_member" value="mike_d" list="defPlayers"></td><td><input type="number" name="P22_power" id="P22_power" value="391279" class="power" oninput="document.frm.P22_warDate.value=`2022-01-03`" step="1"></td><td><select name="P22_formationId"> <option value="">&nbsp;</option><option value="1">Earth</option><option value="3">Fire</option><option value="2" selected="">Water</option></select><input type="hidden" name="P22_warDate" id="P22_warDate" value="01/03/2022">
+</td><td title="#1799: Bastion of Fire/2 #33 Happy TITAN 482382 Water hero 445354 attacked +20"><select name="P22_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option selected="">Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P22_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>3</td><td><input type="text" name="P23_member" id="P23_member" value="Parah" list="defPlayers"></td><td><input type="number" name="P23_power" id="P23_power" value="273821" class="power" oninput="document.frm.P23_warDate.value=`2022-01-03`" step="1"></td><td><select name="P23_formationId"> <option value="">&nbsp;</option><option value="1" selected="">Earth</option><option value="3">Fire</option><option value="2">Water</option></select><input type="hidden" name="P23_warDate" id="P23_warDate" value="01/03/2022">
+</td><td title="#1794: Bastion of Fire/3 #14 LolaLu TITAN 295970 Earth hero 406806 attacked +20"><select name="P23_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option selected="">LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P23_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top" style="border-top: 1pt dotted dimgray;"><td align="right">Gates of Nature</td><td>1</td><td><input type="text" name="P31_member" id="P31_member" value="Butchers" list="defPlayers"></td><td><input type="number" name="P31_power" id="P31_power" value="335769" class="power" oninput="document.frm.P31_warDate.value=`2022-01-03`" step="1"></td><td><select name="P31_formationId"> <option value="">&nbsp;</option><option value="1">Earth</option><option value="3" selected="">Fire</option><option value="2">Water</option></select><input type="hidden" name="P31_warDate" id="P31_warDate" value="01/03/2022">
+</td><td title="#1783: Gates of Nature/1 #2 Kapella TITAN 744200 Fire hero 527869 attacked +20"><select name="P31_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option selected="">Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P31_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>2</td><td><input type="text" name="P32_member" id="P32_member" value="Kajikeree" list="defPlayers"></td><td><input type="number" name="P32_power" id="P32_power" value="354274" class="power" oninput="document.frm.P32_warDate.value=`2022-01-03`" step="1"></td><td><select name="P32_formationId"> <option value="">&nbsp;</option><option value="1">Earth</option><option value="3">Fire</option><option value="2" selected="">Water</option></select><input type="hidden" name="P32_warDate" id="P32_warDate" value="01/03/2022">
+</td><td title="#1784: Gates of Nature/2 #11 Mikko Ianus TITAN 414373 Earth hero 456085 attacked +20"><select name="P32_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option selected="">Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P32_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>3</td><td><input type="text" name="P33_member" id="P33_member" value="SkeetSkeetSkeet" list="defPlayers"></td><td><input type="number" name="P33_power" id="P33_power" value="286186" class="power" oninput="document.frm.P33_warDate.value=`2022-01-03`" step="1"></td><td><select name="P33_formationId"> <option value="">&nbsp;</option><option value="1" selected="">Earth</option><option value="3">Fire</option><option value="2">Water</option></select><input type="hidden" name="P33_warDate" id="P33_warDate" value="01/03/2022">
+</td><td title="#1773: Gates of Nature/3 #16 chris110 TITAN 312510 Earth hero 455627 attacked +20"><select name="P33_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option selected="">chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P33_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top" style="border-top: 1pt dotted dimgray;"><td align="right">Bastion of Ice</td><td>1</td><td><input type="text" name="P41_member" id="P41_member" value="RangerRick" list="defPlayers"></td><td><input type="number" name="P41_power" id="P41_power" value="287363" class="power" oninput="document.frm.P41_warDate.value=`2022-01-03`" step="1"></td><td><select name="P41_formationId"> <option value="">&nbsp;</option><option value="1">Earth</option><option value="3" selected="">Fire</option><option value="2">Water</option></select><input type="hidden" name="P41_warDate" id="P41_warDate" value="01/03/2022">
+</td><td title="#1795: Bastion of Ice/1 #14 LolaLu TITAN 295970 Earth hero 406806 attacked +20"><select name="P41_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option selected="">LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P41_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>2</td><td><input type="text" name="P42_member" id="P42_member" value="Minthe" list="defPlayers"></td><td><input type="number" name="P42_power" id="P42_power" value="389650" class="power" oninput="document.frm.P42_warDate.value=`2022-01-03`" step="1"></td><td><select name="P42_formationId"> <option value="">&nbsp;</option><option value="1">Earth</option><option value="3" selected="">Fire</option><option value="2">Water</option></select><input type="hidden" name="P42_warDate" id="P42_warDate" value="01/03/2022">
+</td><td title="#1785: Bastion of Ice/2 #2 Kapella TITAN 744200 Fire hero 527869 attacked +20"><select name="P42_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option selected="">Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P42_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>3</td><td><input type="text" name="P43_member" id="P43_member" value="ISI" list="defPlayers"></td><td><input type="number" name="P43_power" id="P43_power" value="338578" class="power" oninput="document.frm.P43_warDate.value=`2022-01-03`" step="1"></td><td><select name="P43_formationId"> <option value="">&nbsp;</option><option value="1">Earth</option><option value="3">Fire</option><option value="2" selected="">Water</option></select><input type="hidden" name="P43_warDate" id="P43_warDate" value="01/03/2022">
+</td><td title="#1786: Bastion of Ice/3 #11 Mikko Ianus TITAN 414373 Earth hero 456085 attacked +20"><select name="P43_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option selected="">Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P43_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top" style="border-top: 1pt dotted dimgray;"><td align="right">Spring of Elements</td><td>1</td><td><input type="text" name="P51_member" id="P51_member" value="Son Goku" list="defPlayers"></td><td><input type="number" name="P51_power" id="P51_power" value="254639" class="power" oninput="document.frm.P51_warDate.value=`2022-01-03`" step="1"></td><td><select name="P51_formationId"> <option value="">&nbsp;</option><option value="1">Earth</option><option value="3" selected="">Fire</option><option value="2">Water</option></select><input type="hidden" name="P51_warDate" id="P51_warDate" value="01/03/2022">
+</td><td title="#1774: Spring of Elements/1 #10 Brute Squad TITAN 476406 Earth hero 438964 attacked +20"><select name="P51_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option selected="">Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P51_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>2</td><td><input type="text" name="P52_member" id="P52_member" value="Leonard" list="defPlayers"></td><td><input type="number" name="P52_power" id="P52_power" value="262990" class="power" oninput="document.frm.P52_warDate.value=`2022-01-03`" step="1"></td><td><select name="P52_formationId"> <option value="">&nbsp;</option><option value="1" selected="">Earth</option><option value="3">Fire</option><option value="2">Water</option></select><input type="hidden" name="P52_warDate" id="P52_warDate" value="01/03/2022">
+</td><td title="#1775: Spring of Elements/2 #16 chris110 TITAN 312510 Earth hero 455627 attacked +20"><select name="P52_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option selected="">chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P52_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>3</td><td><input type="text" name="P53_member" id="P53_member" value="Kostas" list="defPlayers"></td><td><input type="number" name="P53_power" id="P53_power" value="256403" class="power" oninput="document.frm.P53_warDate.value=`2022-01-03`" step="1"></td><td><select name="P53_formationId"> <option value="">&nbsp;</option><option value="1" selected="">Earth</option><option value="3">Fire</option><option value="2">Water</option></select><input type="hidden" name="P53_warDate" id="P53_warDate" value="01/03/2022">
+</td><td title="#1776: Spring of Elements/3 #10 Brute Squad TITAN 476406 Earth hero 438964 attacked +20"><select name="P53_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option selected="">Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P53_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+		
+				</td></tr><tr><td>&nbsp;
+				</td></tr><tr><th colspan="2">Fort</th><th align="left">Member</th><th>Hero Power</th><th align="left">Formation</th><th align="left">Attacker</th><th>Result
+</th></tr><tr valign="top" style="border-top: 1pt dotted dimgray;"><td align="right">Barracks</td><td>1</td><td><input type="text" name="P61_member" id="P61_member" value="RangerRick" list="defPlayers"></td><td><input type="number" name="P61_power" id="P61_power" value="401375" class="power" oninput="document.frm.P61_warDate.value=`2022-01-03`" step="1"></td><td><select name="P61_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13" selected="">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P61_warDate" id="P61_warDate" value="01/03/2022">
+</td><td title="#1777: Barracks/1 #1 Delayar HERO 566084 titan 625636 attacked +20"><select name="P61_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option selected="">Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P61_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>2</td><td><input type="text" name="P62_member" id="P62_member" value="Son Goku" list="defPlayers"></td><td><input type="number" name="P62_power" id="P62_power" value="432463" class="power" oninput="document.frm.P62_warDate.value=`2022-01-03`" step="1"></td><td><select name="P62_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5">Yasmine</option><option value="15" selected="">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P62_warDate" id="P62_warDate" value="01/03/2022">
+</td><td title="#1778: Barracks/2 #1 Delayar HERO 566084 titan 625636 attacked +20"><select name="P62_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option selected="">Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P62_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top" style="border-top: 1pt dotted dimgray;"><td align="right">Mage Academy</td><td>1</td><td><input type="text" name="P71_member" id="P71_member" value="Zalmoxis" list="defPlayers"></td><td><input type="number" name="P71_power" id="P71_power" value="385215" class="power" oninput="document.frm.P71_warDate.value=`2022-01-03`" step="1"></td><td><select name="P71_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5" selected="">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P71_warDate" id="P71_warDate" value="01/03/2022">
+</td><td title="#1779: Mage Academy/1 #8 Unschaffbaren HERO 569144 titan 357482 attacked +20"><select name="P71_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option selected="">Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P71_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>2</td><td><input type="text" name="P72_member" id="P72_member" value="Butchers" list="defPlayers"></td><td><input type="number" name="P72_power" id="P72_power" value="421112" class="power" oninput="document.frm.P72_warDate.value=`2022-01-03`" step="1"></td><td><select name="P72_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5" selected="">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P72_warDate" id="P72_warDate" value="01/03/2022">
+</td><td title="#1780: Mage Academy/2 #4 Kaziramar HERO 548358 titan 494677 attacked +20"><select name="P72_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option selected="">Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P72_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top" style="border-top: 1pt dotted dimgray;"><td align="right">Lighthouse</td><td>1</td><td><input type="text" name="P81_member" id="P81_member" value="Leonard" list="defPlayers"></td><td><input type="number" name="P81_power" id="P81_power" value="406732" class="power" oninput="document.frm.P81_warDate.value=`2022-01-03`" step="1"></td><td><select name="P81_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5" selected="">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P81_warDate" id="P81_warDate" value="01/03/2022">
+</td><td title="#1787: Lighthouse/1 #7 Qrupt HERO 555845 titan 362312 attacked +20"><select name="P81_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option selected="">Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P81_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>2</td><td><input type="text" name="P82_member" id="P82_member" value="Minthe" list="defPlayers"></td><td><input type="number" name="P82_power" id="P82_power" value="485519" class="power" oninput="document.frm.P82_warDate.value=`2022-01-03`" step="1"></td><td><select name="P82_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46" selected="">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P82_warDate" id="P82_warDate" value="01/03/2022">
+</td><td title="#1788: Lighthouse/2 #7 Qrupt HERO 555845 titan 362312 attacked +20"><select name="P82_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option selected="">Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P82_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top" style="border-top: 1pt dotted dimgray;"><td align="right">Foundry</td><td>1</td><td><input type="text" name="P91_member" id="P91_member" value="Parah" list="defPlayers"></td><td><input type="number" name="P91_power" id="P91_power" value="365086" class="power" oninput="document.frm.P91_warDate.value=`2022-01-03`" step="1"></td><td><select name="P91_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5" selected="">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P91_warDate" id="P91_warDate" value="01/03/2022">
+</td><td title="#1781: Foundry/1 #9 Sir Aubrey HERO 464048 titan 440787 attacked +7"><select name="P91_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option selected="">Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P91_A0_result">
+ <option value="">&nbsp;</option>  <option value="20">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7" selected="">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr><td colspan="5/"></td><td title=""><select name="P91_A1_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P91_A1_result">
+ <option value="">&nbsp;</option>  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>2</td><td><input type="text" name="P92_member" id="P92_member" value="Kostas" list="defPlayers"></td><td><input type="number" name="P92_power" id="P92_power" value="492988" class="power" oninput="document.frm.P92_warDate.value=`2022-01-03`" step="1"></td><td><select name="P92_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5" selected="">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P92_warDate" id="P92_warDate" value="01/03/2022">
+</td><td title="#1789: Foundry/2 #5 Harvey Specter HERO 591296 titan 421921 attacked +20"><select name="P92_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option selected="">Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P92_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>3</td><td><input type="text" name="P93_member" id="P93_member" value="SkeetSkeetSkeet" list="defPlayers"></td><td><input type="number" name="P93_power" id="P93_power" value="362941" class="power" oninput="document.frm.P93_warDate.value=`2022-01-03`" step="1"></td><td><select name="P93_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11" selected="">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P93_warDate" id="P93_warDate" value="01/03/2022">
+</td><td title="#1782: Foundry/3 #12 Refator HERO 426657 titan 455872 attacked +20"><select name="P93_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option selected="">Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P93_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top" style="border-top: 1pt dotted dimgray;"><td align="right">Citadel</td><td>1</td><td><input type="text" name="P101_member" id="P101_member" value="Kajikeree" list="defPlayers"></td><td><input type="number" name="P101_power" id="P101_power" value="458601" class="power" oninput="document.frm.P101_warDate.value=`2022-01-03`" step="1"></td><td><select name="P101_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5">Yasmine</option><option value="15" selected="">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P101_warDate" id="P101_warDate" value="01/03/2022">
+</td><td title="#1796: Citadel/1 #8 Unschaffbaren HERO 569144 titan 357482 attacked +20"><select name="P101_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option selected="">Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P101_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>2</td><td><input type="text" name="P102_member" id="P102_member" value="Xerxeso" list="defPlayers"></td><td><input type="number" name="P102_power" id="P102_power" value="489362" class="power" oninput="document.frm.P102_warDate.value=`2022-01-03`" step="1"></td><td><select name="P102_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10" selected="">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P102_warDate" id="P102_warDate" value="01/03/2022">
+</td><td title="#1791: Citadel/2 #3 Mkr Indo HERO 744360 titan 423160 attacked +20"><select name="P102_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option selected="">Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P102_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>3</td><td><input type="text" name="P103_member" id="P103_member" value="Blue" list="defPlayers"></td><td><input type="number" name="P103_power" id="P103_power" value="447416" class="power" oninput="document.frm.P103_warDate.value=`2022-01-03`" step="1"></td><td><select name="P103_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4" selected="">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P103_warDate" id="P103_warDate" value="01/03/2022">
+</td><td title="#1790: Citadel/3 #4 Kaziramar HERO 548358 titan 494677 attacked +20"><select name="P103_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option selected="">Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P103_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>4</td><td><input type="text" name="P104_member" id="P104_member" value="ClutchShot" list="defPlayers"></td><td><input type="number" name="P104_power" id="P104_power" value="556290" class="power" oninput="document.frm.P104_warDate.value=`2022-01-03`" step="1"></td><td><select name="P104_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5" selected="">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P104_warDate" id="P104_warDate" value="01/03/2022">
+</td><td title="#1792: Citadel/4 #3 Mkr Indo HERO 744360 titan 423160 attacked +20"><select name="P104_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option selected="">Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P104_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>5</td><td><input type="text" name="P105_member" id="P105_member" value="ISI" list="defPlayers"></td><td><input type="number" name="P105_power" id="P105_power" value="395628" class="power" oninput="document.frm.P105_warDate.value=`2022-01-03`" step="1"></td><td><select name="P105_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16" selected="">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5">Yasmine</option><option value="15">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P105_warDate" id="P105_warDate" value="01/03/2022">
+</td><td title="#1797: Citadel/5 #9 Sir Aubrey HERO 464048 titan 440787 attacked +20"><select name="P105_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option>Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option selected="">Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P105_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+</td></tr><tr valign="top"><td></td><td>6</td><td><input type="text" name="P106_member" id="P106_member" value="mike_d" list="defPlayers"></td><td><input type="number" name="P106_power" id="P106_power" value="484343" class="power" oninput="document.frm.P106_warDate.value=`2022-01-03`" step="1"></td><td><select name="P106_formationId"> <option value="">&nbsp;</option><option value="7">Aurora</option><option value="27">Aurora/K'arkh</option><option value="34">Aurora/Keira</option><option value="28">Aurora/Maya</option><option value="38">Aurora/ODH</option><option value="30">Aurora/Orion</option><option value="44">Aurora/Twins</option><option value="19">Aurora/Yasmine</option><option value="31">Cleaver/Peppy</option><option value="17">Corvus</option><option value="23">Dante</option><option value="32">Defensive</option><option value="46">Elmir</option><option value="43">Galahad/Arachne</option><option value="4">K'arkh</option><option value="21">K'arkh/ODH</option><option value="45">K'arkh/Twins</option><option value="12">K'arkh/Yasmine</option><option value="8">Keira</option><option value="9">Keira/Jet</option><option value="24">Keira/Maya</option><option value="41">Keira/ODH</option><option value="13">Maya</option><option value="18">Maya/Jhu</option><option value="20">ODH</option><option value="25">Orion/Helios</option><option value="22">Qing Mao</option><option value="6">Satori</option><option value="14">Tristan/Dante</option><option value="35">Tristan/Yasmine</option><option value="11">Twins</option><option value="10">Undead</option><option value="16">Undead/K'arkh</option><option value="29">Undead/Keira</option><option value="36">Undead/Twins</option><option value="33">Undead/Yasmine</option><option value="5">Yasmine</option><option value="15" selected="">Yasmine/Dante</option><option value="26">Yasmine/Keira</option><option value="39">Yasmine/ODH</option><option value="40">Yasmine/Twins</option></select><input type="hidden" name="P106_warDate" id="P106_warDate" value="01/03/2022">
+</td><td title="#1793: Citadel/6 #5 Harvey Specter HERO 591296 titan 421921 attacked +20"><select name="P106_A0_member" style="color: black">
+ <option value="">&nbsp;</option>  <option>Brute Squad</option>
+  <option>chris110</option>
+  <option>Delayar</option>
+  <option>g g</option>
+  <option>Happy</option>
+  <option selected="">Harvey Specter</option>
+  <option>Kapella</option>
+  <option>Kaziramar</option>
+  <option>LolaLu</option>
+  <option>Mikko Ianus</option>
+  <option>Mkr Indo</option>
+  <option>Qrupt</option>
+  <option>Refator</option>
+  <option>Sir Aubrey</option>
+  <option>Unschaffbaren</option>
+</select></td><td><select style="width: 80px;" name="P106_A0_result">
+ <option value="">&nbsp;</option>  <option value="20" selected="">Won</option>
+  <option value="0">Lost</option>
+  <option value="99">Assigned</option>
+  <option value="1">+1</option>
+  <option value="2">+2</option>
+  <option value="3">+3</option>
+  <option value="4">+4</option>
+  <option value="5">+5</option>
+  <option value="6">+6</option>
+  <option value="7">+7</option>
+  <option value="8">+8</option>
+  <option value="9">+9</option>
+  <option value="10">+10</option>
+  <option value="11">+11</option>
+  <option value="12">+12</option>
+  <option value="13">+13</option>
+  <option value="14">+14</option>
+  <option value="15">+15</option>
+  <option value="16">+16</option>
+  <option value="17">+17</option>
+  <option value="18">+18</option>
+  <option value="19">+19</option>
+</select></td><td>
+
+		</td></tr><tr><td>&nbsp;
+		</td></tr><tr><th colspan="2">Reserves</th><th align="left">Member</th><th align="left">Hero Power</th><th align="left">Titan Power</th><th align="left">Attacks
+		
+		</th></tr><tr><td>&nbsp;
+		</td></tr><tr><th colspan="2">Overall</th><th align="left" colspan="5">1127 Points 
+		</th></tr><tr><th colspan="2/"></th><th align="left" colspan="5">0 Attacks remaining; 
+		</th></tr><tr><th colspan="2/"></th><th align="left" colspan="5">0 Titan position(s) remain;
+		</th></tr><tr><th colspan="2/"></th><th align="left" colspan="5">1 Hero positions(s) remain;
+			</th></tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table> 
+</form>
+
+<footer>
+	<span>Copyright 2022 Deep Adapt, LLC</span>
+</footer>
+
+</body></html>
