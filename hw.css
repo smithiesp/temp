@@ -1,0 +1,48 @@
+header {
+	background-color: teal;
+	background-image: none;
+	border-radius: 10px 10px 0px 0px;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+	background-color: #cdc1b7;			/* sort of taupe */
+	font-family: arial, helvetica, sans-serif;
+} 
+main {
+    flex: auto;
+}
+footer {
+	display: flex;
+	justify-content: right;
+  	align-items: center;
+	background-color: teal;
+	background-image: none;
+	border-radius: 0px 0px 10px 10px;
+	height: 25px;
+}
+button, input[type="submit"], input[type="button"] {
+	border-radius: 5px;
+	background-color: saddlebrown;  
+	color: white;
+	font-family: inherit;
+}
+.headerName { 	
+  	font-size: 22px;
+  	font-style: oblique;
+	text-shadow: 2px 2px;  	  
+ 	color: white;
+  	text-shadow: 2px 2px 4px teal, 2px 2px 4px black;
+  	padding-bottom: 5px;
+}.power {
+	width: 75px;
+}
+.result {
+	width: 50px;
+}
