@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head> 
+<meta charset="UTF-8">
+<title>Guild War</title>
+<link rel="stylesheet" href="hw.css">
+</head>
+<body>
+
+<header style='display: flex; flex-direction: column'>
+	<div style='display: flex; flex-direction: row; justify-content: space-between'>
+		<div class=headerName><a href=index.jsp style='text-decoration: none;'><img alt="Hero Wars" src="herowars.png" height=50></a><span style='vertical-align: 60%;'> Guild War AI Assist</div>
+		<div class=headerText>Index</div>
+	</div>
+</header>
+<main>
+<form name=frm> 
+<input type=hidden name=act id=act value=''>
+<datalist id=opponents><option value='3BEPECT'><option value='A Legyozok'><option value='Courage Fuyons'><option value='Dominion Village'><option value='FUJI'><option value='gun'><option value='Imperia'><option value='Mein kleines Reich'><option value='RISING SUN'><option value='Stronghold'><option value='The Crazy Badger'><option value='The Sitting Ducks'><option value='Vanguard'><option value='Xerxeso'><option value='Y6ntble Ha Mocty'></datalist>
+	
+	<table>
+		<tr><td>Date</td><td><input type=date name=warDate id=warDate value='2022-01-04'></td><td/><td>Final Score
+		<tr><td>Guild</td><td><select name="guildId"><option value="10">3BEPECT</option><option value="11">A Legyozok</option><option value="8">Courage Fuyons</option><option value="13">Dominion Village</option><option value="16">FUJI</option><option value="6">gun</option><option value="14">Imperia</option><option value="1" selected>Mein kleines Reich</option><option value="4">RISING SUN</option><option value="9">Stronghold</option><option value="7">The Crazy Badger</option><option value="3">The Sitting Ducks</option><option value="2">Vanguard</option><option value="12">Xerxeso</option><option value="5">Y6ntble Ha Mocty</option></select></td><td><input type=submit value='defend' onclick='document.frm.act.value="defend"'/><td><input type=number name=points id=points value='' min='0' max='1200' step='1'>	
+		<tr><td>Opponent<td><input type=text name=opponent id=opponent value='' list='opponents'><td><input type=submit value='attack' onclick='document.frm.act.value="attack"'/><td><input type=number name=opponentPoints id=opponentPoints value='' min='0' max='1200' step='1'>	
+	</table>
+</form>
+</main>
+<footer>
+	<span>Copyright 2022 Deep Adapt, LLC</span>
+</footer>
+</body>
+</html>
